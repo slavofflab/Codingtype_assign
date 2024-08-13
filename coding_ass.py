@@ -1,3 +1,10 @@
+#!/usr/bin//env python
+## This script can assign the coding type of transcripts.
+## Please change the input file name in line 101, 113 and 173
+## Genome sequence file (line 17) and annoation files are required (line 25)
+## Author: Haomiao Su
+## Email: haomiao.su@yale.edu
+
 from genomeload import load_genome
 from gtfline import gtf_line
 import pandas as pd
@@ -91,7 +98,7 @@ print("Load finished")
 print("Start loading classify file")
 
 #file path for classify file
-cf = "./293T_R1_classification.txt"
+cf = "./classification.txt"
 df = pd.read_csv(cf, delimiter="\t")
 
 # Set 'isoform' as the index of the DataFrame
@@ -103,7 +110,7 @@ print("Start loading new assembled GFF file")
 rna_set2 = {}
 
 #file path for new assembled gtf file
-annotation_file = "../293T_R1.gff"
+annotation_file = "../assembled.gff"
 
 # Initialize rna_set with keys for both strands of each chromosome in genome
 for key in genome:
@@ -154,7 +161,7 @@ with af:
 print("Load new assembled GFF file finished")
 
 # Specify the output file path
-output_file_path = "./293.xlsx"
+output_file_path = "./output.xlsx"
 """
 with pd.ExcelWriter(output_file_path, mode='w', engine='openpyxl') as writer:
     empty_df = pd.DataFrame()
@@ -163,7 +170,7 @@ with pd.ExcelWriter(output_file_path, mode='w', engine='openpyxl') as writer:
 print("Start loading target anisoform information")
 
 #file path for target gene file
-tf = "./target_R1.csv"
+tf = "./target.csv"
 df2 = pd.read_csv(tf, delimiter=',')
 
 # Set 'Gene Name' as the index of the DataFrame
